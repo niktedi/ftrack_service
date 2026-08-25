@@ -75,7 +75,7 @@ async def endpoint(vdata: Data, background_tasks: BackgroundTasks):
 
 @app.post("/encode")
 async def endpoint(vdata: Data, background_tasks: BackgroundTasks):
-    print('yes----')
+    
     #background_tasks.add_task(addq, vdata)
     background_tasks.add_task(addq, vdata)
     return {"message": "OKey"}
@@ -172,7 +172,7 @@ async def endpoint():
 
 def addq(vdata: Data):
     print('addq called`')
-    db = sqlite3.connect("queue.db", timeout=10.0)
+    db = sqlite3.connect("db/queue.db", timeout=10.0)
     with open('vdt.txt','w') as f:
             print(vdata.compId,file=f)
     cur = db.cursor()
@@ -195,7 +195,7 @@ def addq(vdata: Data):
     encoderRun = False
     for proc in psutil.process_iter():
         try:
-            if 'encodeq.py' in proc.cmdline():
+            if 'apps.encodeq' in proc.cmdline():
                 encoderRun = True
                 print('encoderRun',encoderRun)
                 break
@@ -206,7 +206,8 @@ def addq(vdata: Data):
         try:
             pass
             #os.system("python3 encodeq.py &")
-            os.system("python3 encodeq.py")
+            #os.system("python3 encodeq.py")
+            subprocess.run([".venv/bin/python3", "-m","apps.encodeq"])
         except:
             pass
 
