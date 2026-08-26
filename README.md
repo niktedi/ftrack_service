@@ -64,7 +64,9 @@ FTRACK_API_USER=...
 ```bash
 uv sync
 
-# API
+# API - since it runs inside your network --host 0.0.0.0 is ok. but you can
+# restrict api calls from specific host specifying its ip or use 127.0.0.1 if  
+# event listener runs on the same machine 
 uv run uvicorn main:app --host 0.0.0.0 --port 8000
 
 # event listener - if you are not able to expose endpoint for ftrack webhooks 
