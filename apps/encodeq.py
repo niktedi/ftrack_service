@@ -116,7 +116,8 @@ while True:
         db.close()
     if id == None:
         break
-    process(qItem)
+    if qItem.compId != None:
+        process(qItem)
 
     db = sqlite3.connect("db/queue.db")
     cur = db.cursor()

@@ -69,7 +69,7 @@ def getPath(asset,path):
 
 @app.post("/addq")
 async def endpoint(vdata: Data, background_tasks: BackgroundTasks):
-    #background_tasks.add_task(addq, vdata)
+    background_tasks.add_task(addq, vdata)
     #ODODbackground_tasks.add_task(addq, vdata)
     return {"message": "OK"}
 
