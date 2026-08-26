@@ -6,9 +6,9 @@ When an image sequence get int to the specific location, this service picks it u
 to an MP4 (with OCIO colour management and a burned-in frame counter) and uploads the
 result back to the ftrack version as review media.
 
-The system can be notified with two ways - either webhook on ftrack site of catchng an scecial event from ftrack event hub. Webhook is more preffered, but if your organization does noa allot to expose any endpoints to internet  - the only option is catching an event.
+The system can be notified with two ways - either webhook on ftrack site or catchng an special event from ftrack event hub. Webhook is more prefered, but if your organization does not allow to expose any endpoints to the internet - the only option is catching an event.
 
-When event occures catcher gets id of new image sequence and send it to fastPi service script. the script writes this id to the end of queue in SQLite database. Then it launches encodeqpy script that reads from queue and converts sequences to movies/previews
+When event occures catcher gets id of new image sequence and send it to fastAPI service script. the script writes this id to the end of queue in SQLite database. Then it launches encodeq.py script that reads from queue and converts sequences to movies/previews and publishes it along with other version components
 ## How it works
 
 
