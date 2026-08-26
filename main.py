@@ -173,6 +173,7 @@ async def endpoint():
 def addq(vdata: Data):
     print('addq called`')
     db = sqlite3.connect("db/queue.db", timeout=10.0)
+    db.execute("PRAGMA journal_mode = WAL;")
     with open('vdt.txt','w') as f:
             print(vdata.compId,file=f)
     cur = db.cursor()
@@ -205,8 +206,7 @@ def addq(vdata: Data):
     if not encoderRun:
         try:
             pass
-            #os.system("python3 encodeq.py &")
-            #os.system("python3 encodeq.py")
+
             subprocess.run([".venv/bin/python3", "-m","apps.encodeq"])
         except:
             pass
